@@ -1,0 +1,4 @@
+install vue by nvm
+first go in the vue-project ,to run vue server: npm run serve
+call api in the vue-frontend
+activate the env then run python server.
