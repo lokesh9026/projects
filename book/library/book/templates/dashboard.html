@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="row justify-content-center mt-3 ">
+  <div class="col-md-5 col-sm-12 border-bottom my-5">
+      <h5 style="text-align: center;">Dashboard</h5>
+  </div>
+</div>
+
+<div class="row justify-content-center mt-1 mb-5">
+  <div class="col-md-5 col-sm-12 border-bottom">
+       <table class="table my-3">
+        <thead>
+          <tr>
+            <th scope="col">sr. no</th>
+            <th scope="col"> Book Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Price $</th>
+
+            {% if user.is_staff %}
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+            {% endif %}
+            
+          </tr>
+        </thead>
+        <tbody>
+        {% for item in book %}
+          <tr>
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.Author}}</td>
+            <td>{{item.price}} $</td>   
+            
+          {% if user.is_staff %}
+            <td><a href="{% url 'updatebook' item.pk %}""><i class="fa fa-check" style="font-size:24px"></i></a></td>
+            <td><a href="{% url 'deletebook' item.pk %}"><i class="fa fa-close" style="font-size:24px"></i></a></td>
+          {% endif %}
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      
+  </div>
+</div>
+
+{% endblock %}
